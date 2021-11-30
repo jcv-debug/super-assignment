@@ -61,7 +61,7 @@ class StatisticsController extends Controller
      */
     public function indexAction(array $params)
     {
-        try {
+        //try {
             $date   = $this->extractDate($params);
             $params = ParamsBuilder::reportStatsParams($date);
 
@@ -71,11 +71,11 @@ class StatisticsController extends Controller
             $response = [
                 'stats' => $this->extractor->extract($stats, self::STAT_LABELS),
             ];
-        } catch (\Throwable $throwable) {
+        /*} catch (\Throwable $throwable) {
             http_response_code(500);
 
             $response = ['message' => 'An error occurred'];
-        }
+        }*/
 
         $this->render($response, 'json', false);
     }
