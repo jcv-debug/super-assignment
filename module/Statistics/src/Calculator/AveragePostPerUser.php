@@ -7,15 +7,27 @@ namespace Statistics\Calculator;
 use SocialPost\Dto\SocialPostTo;
 use Statistics\Dto\StatisticsTo;
 
+/**
+ * Class AveragePostPerUser
+ *
+ * @package Statistics\Calculator
+ */
 class AveragePostPerUser extends AbstractCalculator
 {
-    protected const UNITS = 'posts';
-    /**
-     * @var array
-     */
-    private $collection = [];
     /**
      * @inheritDoc
+     */
+    protected const UNITS = 'posts';
+    /**
+     * @var array $collection used to store cumulative stats per authors
+     */
+    private $collection = [];
+
+    /**
+     * Creates author in collection and increments post count
+     * 
+     * @param SocialPostTo $postTo
+     * @return void
      */
     protected function doAccumulate(SocialPostTo $postTo): void
     {
@@ -32,7 +44,9 @@ class AveragePostPerUser extends AbstractCalculator
     }
 
     /**
-     * @inheritDoc
+     * Builds a StatisticsTo object with total count of posts per author
+     * 
+     * @return StatisticsTo
      */
     protected function doCalculate(): StatisticsTo
     {
