@@ -22,7 +22,7 @@ class StatisticsToExtractor
     {
         $label = isset($labels[$statisticsTo->getName()])
             ? $labels[$statisticsTo->getName()]
-            : null;
+            : $statisticsTo->getLabel();
 
         $extracted = [
             'name'        => $statisticsTo->getName(),
