@@ -16,6 +16,11 @@ class StatisticsTo
     private $name;
 
     /**
+     * @var string
+     */
+    private $label;
+
+    /**
      * @var float
      */
     private $value;
@@ -131,6 +136,25 @@ class StatisticsTo
     public function setUnits(?string $units): self
     {
         $this->units = $units;
+
+        return $this;
+    }
+    /**
+     * @return string|null
+     */
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string|null $label
+     *
+     * @return $this
+     */
+    public function setLabel(?string $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

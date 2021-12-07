@@ -39,14 +39,16 @@
     });
 
     function onStatsSuccess(stats) {
-        appendRow(stats);
+        appendRow(stats,-1);
     }
 
-    function appendRow(stats) {
+    function appendRow(stats, level = 0) {
         if (stats.value !== null && stats.splitPeriod === null) {
             $('#stats-table').append(
-                '<tr><td>' + stats.label + '</td>' +
-                '<td>' + stats.value + ' ' + stats.units + '</td></tr>'
+                '<tr>' +
+                    '<td' + ( level > 0 ? ' style="padding-left:' + (level * 15) + 'px;">&#8226; ' : '>' ) + stats.label + '</td>' +
+                    '<td>' + stats.value + ' ' + stats.units + '</td>' +
+                '</tr>'
             );
         }
 
@@ -70,7 +72,7 @@
 
         stats.children.forEach(
             function (item) {
-                appendRow(item, false);
+                appendRow(item, level + 1 );
             }
         );
     }
